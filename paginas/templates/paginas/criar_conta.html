@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastrar</title>
+        
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'paginas/css/criar_conta.css' %}">
+
+    </head>
+    <body>
+        <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div id="alert-tarefa" class="alert alert-{{message.extra_tags}} alert-dismissible fade show" role="alert">
+                    <center>{{ message }}</center>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="d-flex justify-content-center h-100">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Cadastrar</h3>
+                        <div class="social-login">
+                            <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Entrar com Facebook</span> </button>
+                            <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Entrar com Google+</span> </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="/criarconta/" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputNome">Nome</label>
+                                    <input type="text" class="form-control" placeholder="Nome" name="first_name" id="first_name">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputSobrenome">Sobrenome</label>
+                                    <input type="text" class="form-control" placeholder="Sobrenome" name= "last_name" id="last_name">
+                                </div> 
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputSobrenome">User</label>
+                                    <input type="text" class="form-control" placeholder="User" name= "username" id="id_username">
+                                </div> 
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputSobrenome">CPF</label>
+                                    <input type="text" class="form-control" placeholder="CPF" name= "cpf" id="id_cpf">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputSenha">Senha</label>
+                                    <input type="password" class="form-control" placeholder="Senha" name= "password1" id="id_password1">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="inputConfirmar">Confirmar Senha</label>
+                                    <input type="password" class="form-control" placeholder="Confirmar Senha" name= "password2" id="id_password2">
+                                </div>
+                            </div> 
+
+                            <div class="form-row">
+                                <label for="inputEmail">Email</label>
+                                <input type="email" class="form-control" placeholder="Email" name= "email" id="id_email">
+                            </div>
+
+                            <div class="form-row">
+                                <label for="inputAddress">Endereço</label>
+                                <input type="text" class="form-control" placeholder="Rua dos Bobos, nº 0" name= "endereco" id="id_endereco">
+                            </div>
+                                    
+                            <div class="form-row">
+                                <label for="inputCity">Cidade</label>
+                                <input type="text" class="form-control" name= "cidade" id="id_cidade">
+                            </div>
+
+                            <div class="form-row">                               
+
+                                <div class="form-group col-md-4">
+                                    <label for="inputEstado">Estado</label>
+                                    <select id="inputEstado" class="form-control" name= "estado" id="id_estado">
+                                        <option selected>Escolher...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="inputEstado">País</label>
+                                    <select id="inputPais" class="form-control" name= "pais" id="id_pais">
+                                        <option selected>Escolher...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label for="inputCEP">CEP</label>
+                                    <input type="text" class="form-control"  name= "cep" id="id_cep">
+                                </div>
+                            </div>                       
+
+                            <div class="form-group">
+                                <input type="submit" value="Salvar" class="btn float-right login_btn">
+                            </div>
+
+                                                        
+                        </form>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

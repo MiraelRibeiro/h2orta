@@ -1,0 +1,47 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alterar senha</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="{% static '/login/css/login.css' %}" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+        {% if messages %}
+            {% for message in messages %}
+                <div id="alert-tarefa" class="alert alert-{{message.extra_tags}} alert-dismissible fade show" role="alert">
+                <center>{{ message }}</center>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+      <div class="fadeIn first">
+        <img src="{% static '/login/img/DN.png' %}" id="icon" alt="User Icon" />
+      </div>
+      
+
+      <form method="post">
+        {{ form.non_field_errors }}
+        {% csrf_token %}
+        
+        {{ form.old_password.errors }}
+        {{ form.new_password1.errors }}
+        {{ form.new_password2.errors }}
+        <input type="password" name="old_password" autofocus="" required="" id="id_old_password" class="fadeIn second" name="login" placeholder="senha antiga">
+        <input type="password" name="new_password1" required="" id="id_new_password1" class="fadeIn third" name="login" placeholder="nova senha">
+        <input type="password" name="new_password2" required="" id="id_new_password2" class="fadeIn fourth" name="login" placeholder="confirmar senha">
+        <input type="submit" class="fadeIn fourth" value="Alterar">
+      </form>
+    </div>
+  </div>
+</body>
+</html>

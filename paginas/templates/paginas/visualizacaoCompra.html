@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalização</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+        
+    <link rel="stylesheet" type="text/css" href="{% static 'paginas/css/styles.css' %}">        
+    <link rel="stylesheet" href="{% static 'paginas/css/heading.css' %}">
+    <link rel="stylesheet" href="{% static 'paginas/css/body.css' %}">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">        
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="../home/"><img id="brandImage" src="{% static 'paginas/img/logo2.png' %}" alt=""></a>
+            <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../home/">Home</a>
+                    </li>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">{{user.get_full_name}}</a>
+                            </li>                              
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="/logout/">Sair</a>
+                          <a class="dropdown-item" href="../deletar/">Deletar Conta</a>
+                        </div>
+                      </div>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead bg-primary text-white">
+        <div class="container d-flex align-items-center flex-column">
+            <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="">
+            
+            <h1 class="masthead-heading mb-0">Dados da Compra</h1>
+            
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-icon"><img class="masthead-avatar mb-5" src="{% static 'paginas/img/modelo1Aquario.png' %}" alt="" width="100" height="300"></div>                
+            </div>
+        </div>  
+        <section class="page-section bg-primary text-white mb-0" id="about">
+            <div class="container">
+                
+                <div class="row">
+                    <div class="col-lg-4 ml-auto">
+                        <h2><p class="pre-wrap lead">Usuario</p></h2> 
+                        <li>Nome: {{compra.id_user.first_name}} {{compra.id_user.last_name}}</li>
+                        <li>CPF: 12345678910 </li>   
+                                       
+                    </div>
+    
+                    <div class="col-lg-4 ml-auto">
+                       <h2><p class="pre-wrap lead">Produto</p></h2> 
+                       <li>Data Compra: {{compra.dataCompra}}</li>
+                       <li>Modelo Estufa: {{compra.id_produto.modelo}}</li>
+                       <li>Tamanho: {{compra.id_produto.tamanhoCM}}</li>
+                       <li>Itens Inclusos: {{compra.id_produto.itensInclusos}}</li>                           
+                       <li>Estrutura: {{compra.id_produto.estrutura}}</li>
+                    </div>
+    
+                    <div class="col-lg-4 ml-auto">
+                        <h2><p class="pre-wrap lead">Entrega</p></h2> 
+                        <li>Rua: {{compra.id_entrega.rua}} </li>
+                        <li>Casa: {{compra.id_entrega.casa}}</li>
+                        <li>Bairro: {{compra.id_entrega.bairro}} </li>
+                        <li>CEP: {{compra.id_entrega.cep}}</li>
+                        <li>Cidade: {{compra.id_entrega.cidade}}</li>
+                        <li>Estado: {{compra.id_entrega.estado}}</li>                            
+                        <li>País: {{compra.id_entrega.pais}}</li>                
+                     </div>
+                    
+                    <div class="col-lg-4 mr-auto">
+                        <p class="pre-wrap lead"> </p>
+                    </div>
+                </div>
+            </div>
+        </section>      
+    </header>
+    
+
+    
+
+</body>
+</html>

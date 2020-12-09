@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Escolha Estufa</title>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'paginas/css/styles.css' %}">        
+        <link rel="stylesheet" href="{% static 'paginas/css/heading.css' %}">
+        <link rel="stylesheet" href="{% static 'paginas/css/body.css' %}">
+    </head>
+    <body id="page-top">
+        <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
+            <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top"><img id="brandImage" src="{% static 'paginas/img/logo2.png' %}" alt=""></a>
+                <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">                        
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contato</a>
+                        </li>
+                        <div class="dropdown">
+                          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">{{user.get_full_name}}</a>
+                              </li>                              
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/logout/">Sair</a>
+                          </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <img class="masthead-avatar mb-5" src="/static/paginas/img/{{normal.imagem}}" alt="">                
+                
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                
+            </div>
+            <div class="container">
+                <div class="card-deck mb-3 text-center">
+                  <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                      <h4 class="font-weight-normal">Normal</h4>
+                    </div>
+                    <div class="card-body">
+                      <h1 class="card-title pricing-card-title">R$ {{normal.valor}} </h1>
+                      <ul class="list-unstyled mt-3 mb-4">
+                        <li>{{normal.slots}} slots(5 cm de diâmetros)</li>
+                        <li>{{normal.fileiras}} fileiras 4 slots</li>
+                        <li>{{normal.itensInclusos}}</li>
+                        {% if normal.bombaAgua %}
+                        <li>Com bomba de circulação de água</li>
+                        {% else %}
+                        <li>Sem bomba de circulação de água</li>  
+                        {% endif %}
+                        <li>Tamanho total {{normal.tamanhoCM}} cm</li>
+                        <li></li>
+                      </ul>
+                      <button type="button" class="btn btn-lg btn-block btn-outline-primary"><a href="/comprar/{{normal.id}}" >Clique para Comprar</a></button>
+                      
+                    </div>
+                  </div>
+                  <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                      <h4 class="my-0 font-weight-normal">Médio</h4>
+                    </div>
+                    <div class="card-body">
+                      <h1 class="card-title pricing-card-title">R${{media.valor}}</h1>
+                      <ul class="list-unstyled mt-3 mb-4">
+                        <li>{{media.slots}} slots(5 cm de diâmetros)</li>
+                        <li>{{media.fileiras}} fileiras 5 slots</li>
+                        <li>{{media.itensInclusos}}</li>
+                        {% if media.bombaAgua %}
+                        <li>Com bomba de circulação de água</li>
+                        {% else %}
+                        <li>Sem bomba de circulação de água</li>  
+                        {% endif %}                       
+                        <li>Tamanho total {{media.tamanhoCM}} cm</li>
+                      </ul>
+                      <button type="button" class="btn btn-lg btn-block btn-outline-primary"><a href="/comprar/{{media.id}}" >Clique para Comprar</a></button>
+                    </div>
+                  </div>
+                  <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                      <h4 class="my-0 font-weight-normal">Grande</h4>
+                    </div>
+                    <div class="card-body">
+                      <h1 class="card-title pricing-card-title" color="mediumseagreen">R${{grande.valor}}</h1>
+                      <ul class="list-unstyled mt-3 mb-4">
+                        <li>{{grande.slots}} slots(5 cm de diâmetros)</li>
+                        <li>{{grande.fileiras}} fileiras 4 slots</li>
+                        <li>{{grande.itensInclusos}}</li>
+                        {% if grande.bombaAgua %}
+                        <li>Com bomba de circulação de água</li>
+                        {% else %}
+                        <li>Sem bomba de circulação de água</li>  
+                        {% endif %} 
+                        <li>Tamanho total {{grande.tamanhoCM}} cm</li>
+                      </ul>
+                      <button type="button" class="btn btn-lg btn-block btn-outline-primary"><a href="/comprar/{{grande.id}}" >Clique para Comprar</a></button>
+                    </div>
+                  </div>
+                </div>           
+                
+              </div>
+        </header>        
+        
+        <section class="page-section" id="contact">
+            <div class="container">
+                
+                <div class="text-center">
+                    <h2 class="page-section-heading text-secondary d-inline-block mb-0">CONTATOS</h2>
+                </div>
+                
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="icon-contact mb-3"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="text-muted">Phone</div>
+                            <div class="lead font-weight-bold">(555) 555-5555</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="icon-contact mb-3"><i class="far fa-envelope"></i></div>
+                            <div class="text-muted">Email</div><a class="lead font-weight-bold" href="mailto:h2orta@hidroponia.com">h2orta@hidroponia.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="mb-4">LOCAL</h4>
+                        <p class="pre-wrap lead mb-0">5555, Rua das Calçadas
+com Arvores, Lugar Nenhum</p>
+                    </div>
+                    
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="mb-4">AROUND THE WEB</h4><a class="btn btn-outline-light btn-social mx-1" href="https://www.facebook.com/StartBootstrap"><i class="fab fa-fw fa-facebook-f"></i></a><a class="btn btn-outline-light btn-social mx-1" href="https://www.twitter.com/sbootstrap"><i class="fab fa-fw fa-twitter"></i></a>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <h4 class="mb-4">Sobre o Site</h4>
+                        <p class="pre-wrap lead mb-0">O site é fictício e não representa uma empresa real, mas sim um projeto acadêmico</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <section class="copyright py-4 text-center text-white">
+            <div class="container"><small class="pre-wrap">Hydroponic © H2Orta 2020</small></div>
+        </section>
+        
+        <div class="scroll-to-top d-lg-none position-fixed"><a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a></div>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        
+        <script src="assets/mail/jqBootstrapValidation.js"></script>
+        <script src="assets/mail/contact_me.js"></script>
+        
+        <script src="{% static 'paginas/js/scripts.js' %}"></script>
+        
+    </body>
+</html>

@@ -1,0 +1,253 @@
+{% load static %}
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../../../favicon.ico">
+
+  <title>Compra Estufa</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+        
+  <link rel="stylesheet" type="text/css" href="{% static 'paginas/css/styles.css' %}">        
+  <link rel="stylesheet" href="{% static 'paginas/css/heading.css' %}">
+  <link rel="stylesheet" href="{% static 'paginas/css/body.css' %}">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Estilos customizados para esse template -->
+  <link href="form-validation.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+</head>
+
+<body class="bg-light">
+
+  <div class="container">
+    {% if messages %}
+      {% for message in messages %}
+          <div id="alert-tarefa" class="alert alert-{{message.extra_tags}} alert-dismissible fade show" role="alert">
+          <center>{{ message }}</center>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+      {% endfor %}
+    {% endif %}
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="/static/paginas/img/{{dados.imagem}}" alt="" width="150" height="150">
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Seu carrinho</span>
+          <span class="badge badge-secondary badge-pill"></span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">{{dados.modelo}}</h6>
+              <small class="text-muted">Estufa Hidropônica residencial</small>
+            </div>
+            <span class="text-muted">R${{dados.valor}}</span>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (BRL)</span>
+            <strong>R${{dados.valor}}</strong>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Endereço de cobrança</h4>
+        <!-- <form action="/comprar/{{dados.id}}" method="POST">
+          {% csrf_token %}
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Confirmar Compra</button>
+        </form> -->
+        <form class="needs-validation" action="/comprar/{{dados.id}}" method="POST" >
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="nome">Nome Completo</label>
+            <input type="text" class="form-control" id="id_nome" name="nome" placeholder="" value="" required="">
+            <div class="invalid-feedback">
+              É obrigatório inserir um nome válido.            
+            </div>            
+          </div>
+
+          <div class="mb-3">
+            <label for="rua">Rua</label>
+            <div class="input-group">              
+              <input type="text" class="form-control" id="id_rua" name="rua" placeholder="Rua dos bobos " required="">
+              <div class="invalid-feedback" style="width: 100%;">
+                Nome da rua é obrigatório.
+              </div>
+            </div>
+          </div>
+
+          <div class="row"> 
+            <div class="col-md-3 mb-3">
+              <label for="casa">N° Casa</label>
+              <input type="text" class="form-control" id="id_casa" name="casa" placeholder="nº 0" required="">
+              <div class="invalid-feedback">
+                É obrigatório inserir um número residencial.
+              </div>              
+            </div>  
+            <div class="col-md-3 mb-3">
+              <label for="cep">CEP</label>
+              <input type="text" class="form-control" id="id_cep" name="cep" placeholder="" required="">
+              <div class="invalid-feedback">
+                É obrigatório inserir um CEP.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="bairro">Bairro</label>
+              <input type="text" class="form-control" id="id_bairro" name="bairro" placeholder="Bairro das Graças" required="">
+              <div class="invalid-feedback">
+                Por favor, insira o nome do bairro.
+              </div>
+            </div>  
+          </div>         
+
+          <div class="row">
+            <div class="col-md-5 mb-3">
+              <label for="pais">País</label>
+              <select class="custom-select d-block w-100" id="id_pais" name="pais" required="">
+                <option value="">Escolha...</option>
+                <option>Brasil</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor, escolha um país válido.
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="estado">Estado</label>
+              <select class="custom-select d-block w-100" id="id_estado" name="estado" required="">
+                <option value="">Escolha...</option>
+                <option>São Paulo</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor, insira um estado válido.
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="Cidade">Cidade</label>
+              <select class="custom-select d-block w-100" id="id_cidade" name="cidade" required="">
+                <option value="">Escolha...</option>
+                <option>Indaiatuba</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor, insira uma cidade.
+              </div>
+            </div>
+          </div>
+          <hr class="mb-4">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="salvar-info" name="lembrar">
+            <label class="custom-control-label" for="salvar-info">Lembrar desta informação, na próxima vez.</label>
+          </div>
+          <hr class="mb-4">
+
+          <h4 class="mb-3">Pagamento</h4>
+
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input id="credito" name="paymentMethod" type="radio" class="custom-control-input" value="Sim" checked="" required="" >
+              <label class="custom-control-label" for="credito">Cartão de crédito</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="debito" name="paymentMethod" type="radio" class="custom-control-input" required="" value="Sim">
+              <label class="custom-control-label" for="debito">Cartão de débito</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="boleto" name="paymentMethod" type="radio" class="custom-control-input" required="" value="Nao">
+              <label class="custom-control-label" for="boleto">Boleto</label>
+            </div>
+          </div>
+
+          <script type="text/javascript">
+          $('input[name="paymentMethod"]').change(function () {
+              if ($('input[name="paymentMethod"]:checked').val() == "Sim") {
+                  $('.camposExtras').show();
+              } else {
+                  $('.camposExtras').hide();
+              }
+          });
+          </script>
+
+          <div class="camposExtras">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="cc-nome">Nome no cartão</label>
+                <input type="text" class="form-control" id="cc_nome" placeholder="" required="">
+                <small class="text-muted">Nome completo, como mostrado no cartão.</small>
+                <div class="invalid-feedback">
+                  O nome que está no cartão é obrigatório.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="cc-numero">Número do cartão</label>
+                <input type="text" class="form-control" id="cc_numero" placeholder="" required="">
+                <div class="invalid-feedback">
+                  O número do cartão de crédito é obrigatório.
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiracao">Data de expiração</label>
+                <input type="text" class="form-control" id="cc_expiracao" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Data de expiração é obrigatória.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="cc-cvv">CVV</label>
+                <input type="text" class="form-control" id="cc_cvv" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Código de segurança é obrigatório.
+                </div>
+              </div>
+            </div>
+          </div>         
+          
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Confirmar Compra</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">Hydroponic © H2Orta 2020</p>      
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script>
+    // Exemplo de JavaScript para desativar o envio do formulário, se tiver algum campo inválido.
+    (function() {
+      'use strict';
+
+      window.addEventListener('load', function() {
+        // Selecione todos os campos que nós queremos aplicar estilos Bootstrap de validação customizados.
+        var forms = document.getElementsByClassName('needs-validation');
+
+        // Faz um loop neles e previne envio
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+
+
+</body></html>
